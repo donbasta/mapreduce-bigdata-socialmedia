@@ -9,7 +9,13 @@ count = 0
 
 for line in sys.stdin:
     line = line.strip()
-    current_social_media_type, current_date, _ = line.split("\t")
+    tokens = line.split("\t")
+
+    if len(tokens) != 3:
+        print(tokens)
+        continue
+
+    current_social_media_type, current_date, _ = tokens
 
     if current_social_media_type == social_media_type and current_date == date:
         count += 1

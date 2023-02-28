@@ -1,23 +1,30 @@
 import json
 import os
 import datetime
+import time
 
 
 def flatten_to_oneline(json_file):
-    with open(json_file) as f:
-        data = json.load(f)
-    print(data)
-    text = json.dumps(data, separators=(",", ":"))
-    print(text)
+    try:
+        with open(json_file) as f:
+            data = json.load(f)
+        text = json.dumps(data, separators=(",", ":"))
+        with open(f"{json_file}.flatten.json", "w") as f:
+            f.write(text)
+    except:
+        pass
 
 
 def mapper_facebook(json_file):
-    with open(json_file) as f:
-        data = json.load(f)
-    for d in data:
-        created_time = d["created_time"]
-        date = created_time.split("T")[0]
-        print(f"facebook\t{date}\t1")
+    try:
+        with open(json_file) as f:
+            data = json.load(f)
+        for d in data:
+            created_time = d["created_time"]
+            date = created_time.split("T")[0]
+            print(f"facebook\t{date}\t1")
+    except:
+        pass
 
 
 def process_twitter_date(created_time):
@@ -43,21 +50,27 @@ def process_twitter_date(created_time):
 
 
 def mapper_twitter(json_file):
-    with open(json_file) as f:
-        data = json.load(f)
-    for d in data:
-        created_time = d["created_at"]
-        date = process_twitter_date(created_time)
-        print(f"twitter\t{date}\t1")
+    try:
+        with open(json_file) as f:
+            data = json.load(f)
+        for d in data:
+            created_time = d["created_at"]
+            date = process_twitter_date(created_time)
+            print(f"twitter\t{date}\t1")
+    except:
+        pass
 
 
 def mapper_youtube(json_file):
-    with open(json_file) as f:
-        data = json.load(f)
-    for d in data:
-        published_at_time = d["snippet"]["publishedAt"]
-        date = published_at_time.split("T")[0]
-        print(f"youtube\t{date}\t1")
+    try:
+        with open(json_file) as f:
+            data = json.load(f)
+        for d in data:
+            published_at_time = d["snippet"]["publishedAt"]
+            date = published_at_time.split("T")[0]
+            print(f"youtube\t{date}\t1")
+    except:
+        pass
 
 
 def timestamp_to_YYYYMMDD(epoch):
@@ -65,83 +78,104 @@ def timestamp_to_YYYYMMDD(epoch):
 
 
 def mapper_instagram(json_file):
-    with open(json_file) as f:
-        data = json.load(f)
-    for d in data:
-        timestamp_create = d["created_time"]
-        date = timestamp_to_YYYYMMDD(float(timestamp_create))
-        print(f"instagram\t{date}\t1")
+    try:
+        with open(json_file) as f:
+            data = json.load(f)
+        for d in data:
+            timestamp_create = d["created_time"]
+            date = timestamp_to_YYYYMMDD(float(timestamp_create))
+            print(f"instagram\t{date}\t1")
+    except:
+        pass
 
 
 def mapper_byu(json_file):
-    with open(json_file) as f:
-        data = json.load(f)
-    print(type(data))
+    try:
+        with open(json_file) as f:
+            data = json.load(f)
+        for d in data["GraphImages"]:
+            timestamp_taken = d["taken_at_timestamp"]
+            date = timestamp_to_YYYYMMDD(timestamp_taken)
+            print(f"byu\t{date}\t1")
+    except:
+        pass
 
 
 def mapper_telkomsel(json_file):
-    with open(json_file) as f:
-        data = json.load(f)
-    print(type(data))
+    try:
+        with open(json_file) as f:
+            data = json.load(f)
+        for d in data["GraphImages"]:
+            timestamp_taken = d["taken_at_timestamp"]
+            date = timestamp_to_YYYYMMDD(timestamp_taken)
+            print(f"telkomsel\t{date}\t1")
+    except:
+        pass
 
 
 def mapper_myxl(json_file):
-    with open(json_file) as f:
-        data = json.load(f)
-    print(type(data))
+    try:
+        with open(json_file) as f:
+            data = json.load(f)
+        for d in data["GraphImages"]:
+            timestamp_taken = d["taken_at_timestamp"]
+            date = timestamp_to_YYYYMMDD(timestamp_taken)
+            print(f"myxl\t{date}\t1")
+    except:
+        pass
 
 
 def mapper_anaktester(json_file):
-    with open(json_file) as f:
-        data = json.load(f)
-    print(type(data))
+    try:
+        with open(json_file) as f:
+            data = json.load(f)
+        for d in data["GraphImages"]:
+            if "taken_at_timestamp" not in d.keys():
+                continue
+            timestamp_taken = d["taken_at_timestamp"]
+            date = timestamp_to_YYYYMMDD(timestamp_taken)
+            print(f"anaktester\t{date}\t1")
+    except:
+        pass
 
 
 def mapper_gridoto(json_file):
-    with open(json_file) as f:
-        data = json.load(f)
-    print(type(data))
+    try:
+        with open(json_file) as f:
+            data = json.load(f)
+        for d in data["GraphImages"]:
+            timestamp_taken = d["taken_at_timestamp"]
+            date = timestamp_to_YYYYMMDD(timestamp_taken)
+            print(f"gridoto\t{date}\t1")
+    except:
+        pass
 
-
-TEST_FILE = "facebook_post_1641972260556_y83jramqg4.json"
-# TEST_FILE = "twitter_status_1640814809426_oyjnbbjiue.json"
-# TEST_FILE = "youtube_video_1627309440619_ab5d4imwbh.json"
-# TEST_FILE = "instagram_comment_1627284368139_a2xc76mtf5.json"
-# TEST_FILE = "byu.id.json.json"
-# TEST_FILE = "gridoto_news.json.json"
-# TEST_FILE = "anaktester_go.json.json"
-# TEST_FILE = "myxl.json.json"
-# TEST_FILE = "telkomsel.json.json"
 
 if __name__ == "__main__":
+    START_TIME = time.time()
+
     for file in os.listdir("./raw_json"):
         tokens = file.split(".")
         filename_without_ext = tokens[0]
         social_media_type = filename_without_ext.split("_")[0]
+
         if social_media_type == "youtube":
-            if file == TEST_FILE:
-                mapper_youtube(f"./raw_json/{file}")
+            mapper_youtube(f"./raw_json/{file}")
         elif social_media_type == "byu":
-            if file == TEST_FILE:
-                mapper_byu(f"./raw_json/{file}")
+            mapper_byu(f"./raw_json/{file}")
         elif social_media_type == "telkomsel":
-            if file == TEST_FILE:
-                mapper_telkomsel(f"./raw_json/{file}")
+            mapper_telkomsel(f"./raw_json/{file}")
         elif social_media_type == "twitter":
-            if file == TEST_FILE:
-                mapper_twitter(f"./raw_json/{file}")
+            mapper_twitter(f"./raw_json/{file}")
         elif social_media_type == "facebook":
-            if file == TEST_FILE:
-                mapper_facebook(f"./raw_json/{file}")
+            mapper_facebook(f"./raw_json/{file}")
         elif social_media_type == "myxl":
-            if file == TEST_FILE:
-                mapper_myxl(f"./raw_json/{file}")
+            mapper_myxl(f"./raw_json/{file}")
         elif social_media_type == "instagram":
-            if file == TEST_FILE:
-                mapper_instagram(f"./raw_json/{file}")
+            mapper_instagram(f"./raw_json/{file}")
         elif social_media_type == "anaktester":
-            if file == TEST_FILE:
-                mapper_anaktester(f"./raw_json/{file}")
+            mapper_anaktester(f"./raw_json/{file}")
         elif social_media_type == "gridoto":
-            if file == TEST_FILE:
-                mapper_gridoto(f"./raw_json/{file}")
+            mapper_gridoto(f"./raw_json/{file}")
+
+    END_TIME = time.time()
