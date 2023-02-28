@@ -23,6 +23,10 @@ def mapper_facebook(json_file):
             created_time = d["created_time"]
             date = created_time.split("T")[0]
             print(f"facebook\t{date}\t1")
+            for comment in d["comments"]["data"]:
+                comment_created_time = comment["created_time"]
+                date = comment_created_time.split("T")[0]
+                print(f"facebook\t{date}\t1")
     except:
         pass
 
@@ -97,6 +101,10 @@ def mapper_byu(json_file):
             timestamp_taken = d["taken_at_timestamp"]
             date = timestamp_to_YYYYMMDD(timestamp_taken)
             print(f"byu\t{date}\t1")
+            for comment in d["comments"]["data"]:
+                timestamp_created_at = comment["created_at"]
+                date = timestamp_to_YYYYMMDD(timestamp_created_at)
+                print(f"byu\t{date}\t1")
     except:
         pass
 
@@ -109,6 +117,10 @@ def mapper_telkomsel(json_file):
             timestamp_taken = d["taken_at_timestamp"]
             date = timestamp_to_YYYYMMDD(timestamp_taken)
             print(f"telkomsel\t{date}\t1")
+            for comment in d["comments"]["data"]:
+                timestamp_created_at = comment["created_at"]
+                date = timestamp_to_YYYYMMDD(timestamp_created_at)
+                print(f"telkomsel\t{date}\t1")
     except:
         pass
 
@@ -121,6 +133,10 @@ def mapper_myxl(json_file):
             timestamp_taken = d["taken_at_timestamp"]
             date = timestamp_to_YYYYMMDD(timestamp_taken)
             print(f"myxl\t{date}\t1")
+            for comment in d["comments"]["data"]:
+                timestamp_created_at = comment["created_at"]
+                date = timestamp_to_YYYYMMDD(timestamp_created_at)
+                print(f"myxl\t{date}\t1")
     except:
         pass
 
@@ -135,6 +151,10 @@ def mapper_anaktester(json_file):
             timestamp_taken = d["taken_at_timestamp"]
             date = timestamp_to_YYYYMMDD(timestamp_taken)
             print(f"anaktester\t{date}\t1")
+            for comment in d["comments"]["data"]:
+                timestamp_created_at = comment["created_at"]
+                date = timestamp_to_YYYYMMDD(timestamp_created_at)
+                print(f"anaktester\t{date}\t1")
     except:
         pass
 

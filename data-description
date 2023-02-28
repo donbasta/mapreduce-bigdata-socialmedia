@@ -1,0 +1,13 @@
+data description:
+
+instagram_comment:
+dict_keys(['crawler_target', 'created_time', 'parent', 'comment', 'id', 'text', 'user', 'likes'])
+
+instagram_post:
+dict_keys(['crawler_target', 'created_time', 'images', 'link', 'caption', 'comment', 'id', 'shortcode', 'user', 'likes'])
+
+youtube_comment:
+dict_keys(['snippet', 'crawler_target', 'parent', 'kind', 'etag', 'id'])
+
+youtube_video:
+dict_keys(['snippet', 'crawler_target', 'kind', 'etag', 'id', 'statistics'])

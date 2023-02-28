@@ -175,12 +175,16 @@ def mapper_gridoto(json_file):
 # TEST_FILE = "facebook_post_1641972260556_y83jramqg4.json"
 # TEST_FILE = "twitter_status_1640814809426_oyjnbbjiue.json"
 # TEST_FILE = "youtube_video_1627309440619_ab5d4imwbh.json"
+# TEST_FILE = "youtube_comment_1644855992219_ncv8vn0axf.json"
 # TEST_FILE = "instagram_comment_1627284368139_a2xc76mtf5.json"
-TEST_FILE = "byu.id.json.json"
-TEST_FILE = "gridoto_news.json.json"
-TEST_FILE = "anaktester_go.json.json"
-TEST_FILE = "myxl.json.json"
-TEST_FILE = "telkomsel.json.json"
+# TEST_FILE = "instagram_post_1641997533866_pfutcq3ovp.json"
+# TEST_FILE = "instagram_media_1643019353547.json"
+# TEST_FILE = "instagram_status_1643951410051.json"
+# TEST_FILE = "byu.id.json.json.flatten.json"
+# TEST_FILE = "gridoto_news.json.json.flatten.json"
+# TEST_FILE = "anaktester_go.json.json.flatten.json"
+# TEST_FILE = "myxl.json.json.flatten.json"
+TEST_FILE = "telkomsel.json.json.flatten.json"
 
 if __name__ == "__main__":
     for file in os.listdir("./raw_json"):
