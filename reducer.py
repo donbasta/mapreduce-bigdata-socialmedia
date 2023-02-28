@@ -1,4 +1,4 @@
-#!/home/farras/.pyenv/shims/python
+#!/home/bigdata/anaconda3/bin/python
 """reducer.py"""
 
 import sys
