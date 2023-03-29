@@ -1,10 +1,9 @@
-#!/home/bigdata/anaconda3/bin/python
+#!/home/farras/.pyenv/shims/python
 """mapper.py"""
 
 import json
 import os
 import datetime
-import time
 import sys
 
 
@@ -175,28 +174,30 @@ def mapper_gridoto(json_file):
         pass
 
 
-for line in sys.stdin:
-    file = os.environ["mapreduce_map_input_file"]
+# for line in sys.stdin:
+if __name__ == "__main__":
+    # file = os.environ["mapreduce_map_input_file"]
 
-    tokens = file.split(".")
-    filename_without_ext = tokens[0]
-    social_media_type = filename_without_ext.split("_")[0]
+    for file in os.listdir("./raw_json"):
+        tokens = file.split(".")
+        filename_without_ext = tokens[0]
+        social_media_type = filename_without_ext.split("_")[0]
 
-    if social_media_type == "youtube":
-        mapper_youtube(f"./raw_json/{file}")
-    elif social_media_type == "byu":
-        mapper_byu(f"./raw_json/{file}")
-    elif social_media_type == "telkomsel":
-        mapper_telkomsel(f"./raw_json/{file}")
-    elif social_media_type == "twitter":
-        mapper_twitter(f"./raw_json/{file}")
-    elif social_media_type == "facebook":
-        mapper_facebook(f"./raw_json/{file}")
-    elif social_media_type == "myxl":
-        mapper_myxl(f"./raw_json/{file}")
-    elif social_media_type == "instagram":
-        mapper_instagram(f"./raw_json/{file}")
-    elif social_media_type == "anaktester":
-        mapper_anaktester(f"./raw_json/{file}")
-    elif social_media_type == "gridoto":
-        mapper_gridoto(f"./raw_json/{file}")
+        if social_media_type == "youtube":
+            mapper_youtube(f"./raw_json/{file}")
+        elif social_media_type == "byu":
+            mapper_byu(f"./raw_json/{file}")
+        elif social_media_type == "telkomsel":
+            mapper_telkomsel(f"./raw_json/{file}")
+        elif social_media_type == "twitter":
+            mapper_twitter(f"./raw_json/{file}")
+        elif social_media_type == "facebook":
+            mapper_facebook(f"./raw_json/{file}")
+        elif social_media_type == "myxl":
+            mapper_myxl(f"./raw_json/{file}")
+        elif social_media_type == "instagram":
+            mapper_instagram(f"./raw_json/{file}")
+        elif social_media_type == "anaktester":
+            mapper_anaktester(f"./raw_json/{file}")
+        elif social_media_type == "gridoto":
+            mapper_gridoto(f"./raw_json/{file}")
